@@ -7,6 +7,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-22.04
+    env:
+      TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
 
     steps:
     - name: Checkout code
@@ -23,8 +25,3 @@ jobs:
         pip install -r requirements.txt
         sudo apt-get update
         sudo apt-get install -y ffmpeg portaudio19-dev
-
-    - name: Run Streamlit App
-      run: streamlit run main.py --server.port 8501
-      env:
-        TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
